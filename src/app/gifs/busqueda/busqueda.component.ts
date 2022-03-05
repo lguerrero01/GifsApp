@@ -5,26 +5,22 @@ import { GifsService } from '../services/gifs.service';
 @Component({
   selector: 'app-busqueda',
   templateUrl: './busqueda.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class BusquedaComponent {
+  @ViewChild('txtBuscar') txtBuscar!: ElementRef<HTMLInputElement>;
 
-  @ViewChild('txtBuscar') txtBuscar!:ElementRef<HTMLInputElement>;
+  constructor(private gifsService: GifsService) {}
 
-  constructor( private gifsService: GifsService ) {}
-
-  buscar() {
-    
+  public buscar() {
     const valor = this.txtBuscar.nativeElement.value;
 
-    if ( valor.trim().length === 0 ) {
+    if (valor.trim().length === 0) {
       return;
     }
 
-    this.gifsService.buscarGifs( valor );
+    this.gifsService.buscarGifs(valor);
 
     this.txtBuscar.nativeElement.value = '';
   }
-
 }
